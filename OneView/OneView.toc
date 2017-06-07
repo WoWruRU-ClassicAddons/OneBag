@@ -1,33 +1,23 @@
-﻿## $Id: OneView.toc 13687 2006-10-12 04:13:04Z tekkub $
-
+﻿## $Id: OneView.toc 15193 2006-10-25 22:38:54Z caldar $
 ## Interface: 11200
-
 ## Title: OneView |cff7fff7f -Ace2-|r
 ## Notes: One bag to rule them all, and in the darkness bind them.
+## Notes-ruRU: Одна сумка, чтобы управлять ими всеми, и во мраке связывать их.
 ## Notes-zhCN: 整合背包插件，以整合方式显示你在这个服务器上的所有人物的背包与银行。
 ## Notes-deDE: Eine Tasche um sie alle zu beherrschen, und in der Dunkelheit zu binden.
 ## Author: Kaelten
-## Version: 2.0.$Revision: 13687 $
+## Version: 2.0.$Revision: 15193 $
 ## X-Date: $Date: 2006-10-12 00:13:04 -0400 (Thu, 12 Oct 2006) $
 ## X-Category: Frame Modification
 ## X-eMail: kaelten@gmail.com
 ## X-Website: http://www.wowace.com
-
 ## SavedVariables: OneViewDB, OneViewButtonDB
-
 ## Dependencies: OneBag
 ## OptionalDeps: FuBarPlugin-2.0.lua, OneStorage, TabletLib
 ## X-Embeds: FuBarPlugin-2.0.lua, OneStorage, TabletLib
 
-libs\FuBarPlugin-2.0\FuBarPlugin-2.0.lua
-libs\Tablet-2.0\Tablet-2.0.lua
-libs\OneStorage-2.0\OneStorage-2.0.lua
-
-locals.lua
-
-OneStorage.lua
+Localization.lua
 
 OneView.xml
 OneView.lua
-
 OneButton.lua

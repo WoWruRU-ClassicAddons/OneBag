@@ -5,7 +5,7 @@
 	
 	<Frame name="OBBBagFra" inherits="OneBagBaseFrameTemplate" parent="UIParent">
 		<Size>
-			<AbsDimension x="100" y="190"/>
+			<AbsDimension x="144" y="154"/>
 		</Size>
 		<Anchors>
 			<Anchor point="TOPRIGHT" relativeTo="OneBankFrame" relativePoint="TOPLEFT">
@@ -19,7 +19,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="13" y="-15"/>
+							<AbsDimension x="15" y="-15"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -35,27 +35,27 @@
 			</CheckButton>
 			<CheckButton name="$parentBag3" inherits="OneBankBagTemplate" id="7">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentBag2" relativePoint="BOTTOM">
+					<Anchor point="LEFT" relativeTo="$parentBag1" relativePoint="RIGHT">
 						<Offset>
-							<AbsDimension x="0" y="-2"/>
+							<AbsDimension x="2" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
 			</CheckButton>
 			<CheckButton name="$parentBag4" inherits="OneBankBagTemplate" id="8">
 				<Anchors>
-					<Anchor point="LEFT" relativeTo="$parentBag1" relativePoint="RIGHT">
+					<Anchor point="TOP" relativeTo="$parentBag3" relativePoint="BOTTOM">
 						<Offset>
-							<AbsDimension x="1" y="0"/>
+							<AbsDimension x="0" y="-2"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
 			</CheckButton>
 			<CheckButton name="$parentBag5" inherits="OneBankBagTemplate" id="9">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentBag4" relativePoint="BOTTOM">
+					<Anchor point="LEFT" relativeTo="$parentBag3" relativePoint="RIGHT">
 						<Offset>
-							<AbsDimension x="0" y="-2"/>
+							<AbsDimension x="2" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -74,9 +74,9 @@
 					<Layer level="BACKGROUND">
 						<FontString name="$parentSlotCost" inherits="GameFontNormal" text="COSTS_LABEL">
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="OBBBagFraBag3" relativePoint="BOTTOMLEFT">
+								<Anchor point="CENTER" relativeTo="OBBBagFraBag4" relativePoint="BOTTOMLEFT">
 									<Offset>
-										<AbsDimension x="0" y="-10"/>
+										<AbsDimension x="2" y="-16"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
@@ -89,9 +89,9 @@
 							<AbsDimension x="85" y="21"/>
 						</Size>
 						<Anchors>
-							<Anchor point="TOP" relativeTo="$parentSlotCost" relativePoint="BOTTOM">
+							<Anchor point="CENTER" relativeTo="$parentSlotCost" relativePoint="BOTTOM">
 								<Offset>
-									<AbsDimension x="22" y="-7"/>
+									<AbsDimension x="16" y="-16"/>
 								</Offset>
 							</Anchor>
 						</Anchors>

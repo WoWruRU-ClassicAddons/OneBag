@@ -10,6 +10,15 @@ AL:RegisterTranslation("OneCore", "enUS", function()
     }
 end)
 
+AL:RegisterTranslation("OneCore", "ruRU", function()
+   return {
+      ["Quiver"]	= "Амуниция",
+      ["Soul Bag"]	= "Сумка душ",
+      ["Container"]	= "Сумки",
+      ["Bag"]	= "Сумка",
+    }
+end)
+
 AL:RegisterTranslation("OneCore", "zhCN", function()
    return {
       ["Quiver"]	= "箭袋",

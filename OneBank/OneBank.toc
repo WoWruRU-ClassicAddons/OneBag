@@ -2,6 +2,7 @@
 ## Interface: 11200
 ## Title: OneBank |cff7fff7f -Ace2-|r
 ## Notes: One bag to rule them all, and in the darkness bind them.
+## Notes-ruRU: Дополнение к аддону OneBag, чтобы объединять все сумки банка в одну.
 ## Notes-zhCN: 整合背包插件，以整合方式显示你的银行。
 ## Notes-deDE: Eine Tasche um sie alle zu beherrschen, und in der Dunkelheit zu binden. 
 ## Version: 2.0.$Revision: 12749 $
@@ -14,6 +15,7 @@
 ## Dependencies: OneBag
 ## LoadOnDemand: 1
  
-locals.lua
+Localization.lua
+
 OneBank.xml
 OneBank.lua  

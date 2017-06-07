@@ -17,10 +17,10 @@ function OneCore:OnInitialize()
         if not id then error("Usage is GetContainerNumSlots(bagID)", 2) end
         if id == -2 then
             return GetKeyRingSize()
-        else
+		else
             return self.hooks.GetContainerNumSlots.orig(id)
-        end
-    end)
+		end
+	end)
     
     self.modulePrototype.colWidth  		= 39
     self.modulePrototype.rowHeight 		= 39
@@ -37,8 +37,8 @@ function OneCore:OnInitialize()
         "FULLSCREEN",
         "FULLSCREEN_DIALOG",
         "TOOLTIP",
-    }
-
+	}
+	
 end
 
 function OneCore:GetDefaults()
@@ -55,18 +55,18 @@ function OneCore:GetDefaults()
                 bground     = {r = 0, g = 0, b = 0, a = .45},
                 glow        = false,
                 rarity 		= true,
-            },
+			},
             show = {
                 ['*'] = true
-            },
+			},
             strata = 2,
             locked = false,
             clamped = true,
             bagBreak = false,
             vAlign = L["Top"],
             showbutton = true,
-        }
-    end
+		}
+	end
     
     return self.defaults
 end
@@ -87,9 +87,9 @@ function OneCore:GetFreshOptionsTable(module)
                         set  = function(num) 
                             self.db.profile.cols = num
                             self:OrganizeFrame(true)
-                        end, 
+						end, 
                         min  = 5, max  = 32,
-                    },
+					},
                     scale = { 
                         name = L["Scale"], type = "range", 
                         desc = L["Sets the scale of the frame"], 
@@ -103,12 +103,12 @@ function OneCore:GetFreshOptionsTable(module)
                                 if ( shownContainerID and not self.isBank) then
                                     local frame = getglobal("ContainerFrame"..shownContainerID)
                                     frame:SetScale(num)
-                                end
-                            end
-                        end, 
+								end
+							end
+						end, 
                         min  = .2, max  = 2,
                         isPercent = true,
-                    },
+					},
                     strata = { 
                         name = L["Strata"], type = "range", 
                         desc = L["Sets the strata of the frame"], 
@@ -118,11 +118,11 @@ function OneCore:GetFreshOptionsTable(module)
                             self.frame:SetFrameStrata(self.stratas[num])
                             if self.frame.bagFrame then
                                 self.frame.bagFrame:SetFrameStrata(self.stratas[num])
-                            end
+							end
                             StackSplitFrame:SetFrameStrata(self.stratas[num+1])
-                        end, 
+						end, 
                         min  = 1, max  = 5, step = 1,
-                    },
+					},
                     bagbreak = { 
                         name = L["Bag Break"], type = "toggle",
                         desc = L["Sets wether to start a new row at the beginning of a bag."], 
@@ -130,8 +130,8 @@ function OneCore:GetFreshOptionsTable(module)
                         set  = function(value) 
                             self.db.profile.bagBreak = value
                             self:OrganizeFrame(true)
-                        end, 
-                    },
+						end, 
+					},
                     valign = { 
                         name = L["Vertical Alignment"], type = "text",
                         desc = L["Sets wether to have the extra spaces on the top or bottom."], 
@@ -139,9 +139,9 @@ function OneCore:GetFreshOptionsTable(module)
                         set  = function(value) 
                             self.db.profile.vAlign = value
                             self:OrganizeFrame(true)
-                        end,
+						end,
                         validate = {L["Top"], L["Bottom"]}
-                    },
+					},
                     alpha = { 
                         name = L["Alpha"], type = "range", 
                         desc = L["Sets the alpha of the frame"], 
@@ -151,17 +151,17 @@ function OneCore:GetFreshOptionsTable(module)
                             self.frame:SetAlpha(num)
                             if self.frame.bagFrame then
                                 self.frame.bagFrame:SetAlpha(num)
-                            
+								
                                 local shownContainerID = IsBagOpen(KEYRING_CONTAINER)
                                 if ( shownContainerID and not self.isBank) then
                                     local frame = getglobal("ContainerFrame"..shownContainerID)
                                     frame:SetAlpha(num)
-                                end
-                            end
-                        end, 
+								end
+							end
+						end, 
                         min  = .05, max  = 1,
                         isPercent = true,
-                    },
+					},
                     locked = {
                         name = L["Locked"], 
                         type = 'toggle',
@@ -169,8 +169,8 @@ function OneCore:GetFreshOptionsTable(module)
                         get = function() return self.db.profile.locked end,
                         set = function(v) 
                             self.db.profile.locked = v 
-                        end,
-                    },
+						end,
+					},
                     clamped = {
                         name = L["Clamped"],
                         type = 'toggle',
@@ -181,16 +181,16 @@ function OneCore:GetFreshOptionsTable(module)
                             self.frame:SetClampedToScreen(v)
                             if self.frame.bagFrame then
                                 self.frame.bagFrame:SetClampedToScreen(v)
-                            end
-                        end,
-                    }, 
-                }
-            },
+							end
+						end,
+					}, 
+				}
+			},
 			show = {
 				name = L["Show"], type = 'group', order = 3,
 				desc = L["Various Display Options"],
 				args = {
-                     counts = {
+					counts = {
 						name = L["Counts"],
                         type = 'toggle', order = 1,
 						desc = L["Toggles showing the counts for special bags."],
@@ -200,9 +200,9 @@ function OneCore:GetFreshOptionsTable(module)
                             if self.DoBankSlotCounts then
                                 self:DoBankSlotCounts()
                                 self:DoInventorySlotCounts()
-                            else
+							else
                                 self:DoSlotCounts()
-                            end
+							end
 						end,
 					},
                     direction = {
@@ -271,8 +271,8 @@ function OneCore:GetFreshOptionsTable(module)
                                 if self.frame.bags[bag] then
                                     for k, v in ipairs(self.frame.bags[bag]) do 
                                         self:SetBorderColor(v)
-                                    end
-                                end
+									end
+								end
 							end
 						end,
 					},
@@ -289,8 +289,8 @@ function OneCore:GetFreshOptionsTable(module)
                                 if self.frame.bags[bag] then
                                     for k, v in ipairs(self.frame.bags[bag]) do 
                                         self:SetBorderColor(v)
-                                    end
-                                end
+									end
+								end
 							end
 						end,
 					},
@@ -307,8 +307,8 @@ function OneCore:GetFreshOptionsTable(module)
                                 if self.frame.bags[bag] then
                                     for k, v in ipairs(self.frame.bags[bag]) do 
                                         self:SetBorderColor(v)
-                                    end
-                                end
+									end
+								end
 							end
 						end,
 					},
@@ -324,7 +324,7 @@ function OneCore:GetFreshOptionsTable(module)
 							self.frame:SetBackdropColor(r, g, b, a)
                             if self.frame.bagFrame then
                                 self.frame.bagFrame:SetBackdropColor(r, g, b, a)
-                            end
+							end
 						end,
                         hasAlpha = true,
 					},
@@ -342,7 +342,7 @@ function OneCore:GetFreshOptionsTable(module)
 								end
 							end
 						end,
-                    },
+					},
 					rarity = {
 						name = L["Rarity Coloring"], type = 'toggle', order = 7,
 						desc = L["Turns rarity coloring on and off."],
@@ -357,7 +357,7 @@ function OneCore:GetFreshOptionsTable(module)
 								end
 							end
 						end,
-                    },
+					},
                     reset = {
                         name = L['Reset'], type = 'group', order = -1,
                         desc = L["Reset the different colors."],
@@ -367,9 +367,9 @@ function OneCore:GetFreshOptionsTable(module)
                                 desc = L["Returns your mouseover color to the default."],
                                 func = function() 
                                     self.db.profile.colors.mouseover = {r = 0, g = .7, b = 1}
-                                end,
+								end,
                                 order = 1
-                            },
+							},
                             ammo = {
                                 name = L["Ammo Slot Color"], type = "execute",
                                 desc = L["Returns your ammo slot color to the default."],
@@ -379,12 +379,12 @@ function OneCore:GetFreshOptionsTable(module)
                                         if self.frame.bags[bag] then
                                             for k, v in ipairs(self.frame.bags[bag]) do 
                                                 self:SetBorderColor(v)
-                                            end
-                                        end
-                                    end
-                                end,
+											end
+										end
+									end
+								end,
                                 order = 2
-                            },
+							},
                             soul = {
                                 name = L["Soul Slot Color"], type = "execute",
                                 desc = L["Returns your soul slot color to the default."],
@@ -394,12 +394,12 @@ function OneCore:GetFreshOptionsTable(module)
                                         if self.frame.bags[bag] then
                                             for k, v in ipairs(self.frame.bags[bag]) do 
                                                 self:SetBorderColor(v)
-                                            end
-                                        end
-                                    end
-                                end,
+											end
+										end
+									end
+								end,
                                 order = 3
-                            },
+							},
                             prof = {
                                 name = L["Profession Slot Color"], type = "execute",
                                 desc = L["Returns your profession slot color to the default."],
@@ -409,12 +409,12 @@ function OneCore:GetFreshOptionsTable(module)
                                         if self.frame.bags[bag] then
                                             for k, v in ipairs(self.frame.bags[bag]) do 
                                                 self:SetBorderColor(v)
-                                            end
-                                        end
-                                    end
-                                end,
+											end
+										end
+									end
+								end,
                                 order = 4
-                            },
+							},
                             background = {
                                 name = L["Background"], type = "execute",
                                 desc = L["Returns your frame background to the default."],
@@ -423,11 +423,11 @@ function OneCore:GetFreshOptionsTable(module)
                                     self.frame:SetBackdropColor(0, 0, 0, .45)
                                     if self.frame.bagFrame then
                                         self.frame.bagFrame:SetBackdropColor(0, 0, 0, .45)
-                                    end
-                                end,
+									end
+								end,
                                 order = 5
-                            }
-                        }
+							}
+						}
 					}
 				}
 			}
@@ -452,8 +452,8 @@ function OneCore:LoadLocaleCommands(baseArgs, module, bL)
     local self, values = module, {}
     
     for k, v in pairs(bL:GetLocaleList()) do 
-            tinsert(values, v)
-    end
+		tinsert(values, v)
+	end
     tinsert(values, "None")
     
     baseArgs.args.Locale = {
@@ -465,10 +465,10 @@ function OneCore:LoadLocaleCommands(baseArgs, module, bL)
             self.db.profile.locale = value
             L:SetLocale(value or true)
             self:TriggerEvent(string.format("%s_Locale_Changed", tostring(self)), value or true)
-        end,
+		end,
         order = -5, 
         validate = values
-    }
+	}
 end
 
 function OneCore:CopyTable(from, into)
@@ -485,7 +485,7 @@ function OneCore:CopyTable(from, into)
 	if (getn(from)) then
 		table.setn(into, getn(from))		
 	end
-
+	
 	return into
 end
 
@@ -546,7 +546,7 @@ function module:OrganizeFrame(needs)
 				v2:Hide()
 			end
             self.totalCount = self.totalCount + (self.frame.bags[bag].size or 0)
-        end
+		end
 	end
 	
     if self.db.profile.vAlign == L["Bottom"] then
@@ -554,10 +554,10 @@ function module:OrganizeFrame(needs)
         if self.db.profile.bagBreak then
             for k, bag in self.fBags do 
                 if self.frame.bags[bag] and self.frame.bags[bag].size then curCol = curCol - 1 end
-            end
+			end
             curCol = curCol + 1
-        end
-    end
+		end
+	end
     
     
 	for k, bag in (self.db.profile.show.direction and self.fBags or self.rBags) do
@@ -567,7 +567,7 @@ function module:OrganizeFrame(needs)
             if bag > 0 and math.mod(self.frame.bags[bag-1] and self.frame.bags[bag-1].size or 0, cols) ~= 0 and self.db.profile.bagBreak then 
                 curCol = curCol + 1
                 if curCol > cols then curCol, curRow, justinc = 1, curRow + 1, true  end
-            end
+			end
 			if curBag.isAmmo then
 				self.ammoSlots = self.ammoSlots + curBag.size
 			elseif curBag.isSoul then
@@ -622,9 +622,9 @@ function module:SetBorderColor(slot)
                 color = v 
                 if k > 1 then
                     special = true 
-                end
-            end
-        end
+				end
+			end
+		end
 	end
     
     if special and self.db.profile.colors.glow then        
@@ -632,15 +632,15 @@ function module:SetBorderColor(slot)
         slot:GetNormalTexture():SetBlendMode("ADD")
         slot:GetNormalTexture():SetAlpha(.8)
         slot:GetNormalTexture():SetPoint("CENTER", slot:GetName(), "CENTER", 0, 1)
-    elseif special then
+	elseif special then
         slot:SetNormalTexture("Interface\\AddOns\\OneBag\\BagSlot2")
         slot:GetNormalTexture():SetBlendMode("BLEND")
         slot:GetNormalTexture():SetPoint("CENTER", slot:GetName(), "CENTER", 0, 0)
-    else
+	else
         slot:SetNormalTexture("Interface\\AddOns\\OneBag\\BagSlot")
         slot:GetNormalTexture():SetBlendMode("BLEND")
         slot:GetNormalTexture():SetPoint("CENTER", slot:GetName(), "CENTER", 0, 0)
-    end
+	end
 	slot:GetNormalTexture():SetVertexColor(color.r, color.g, color.b)
 end
 
@@ -659,15 +659,15 @@ function module:HighlightBagSlots(bag)
 	
 	local color = self.db.profile.colors.mouseover 
 	for k, v in ipairs(self.frame.bags[bag]) do 
-    
+		
         if self.db.profile.colors.glow then        
             v:SetNormalTexture("Interface\\Buttons\\UI-ActionButton-Border")
             v:GetNormalTexture():SetBlendMode("ADD")
             v:GetNormalTexture():SetAlpha(.8)
-        else
+		else
             v:SetNormalTexture("Interface\\AddOns\\OneBag\\BagSlot2")
             v:GetNormalTexture():SetBlendMode("BLEND")
-        end
+		end
 		v:GetNormalTexture():SetVertexColor(color.r, color.g, color.b)
 	end
 end
@@ -734,27 +734,27 @@ function module:DoSlotCounts()
 	
 	
 	getglobal(name .. info):SetText(format(L["%s/%s Slots"], usedSlots, self.slotCount))
-
+	
     info = info + 1
     
     for i = 2, 4 do 
         getglobal(name .. i):SetText("")
-    end
+	end
     
     if self.db.profile.show.counts then        
         if self.ammoSlots > 0 then
             getglobal(name .. info):SetText(format(L["%s/%s Ammo"], ammoQuantity, self.ammoSlots * 200))
             info = info + 1
-        end
+		end
         if self.soulSlots > 0 then
             getglobal(name .. info):SetText(format(L["%s/%s Soul Shards"], usedSoulSlots, self.soulSlots))
             info = info + 1
-        end
+		end
         if self.profSlots > 0 then
             getglobal(name .. info):SetText(format(L["%s/%s Profession Slots"], usedProfSlots, self.profSlots))
             info = info + 1
-        end
-    end
+		end
+	end
 end
 
 function module:ShouldShow(bag, isAmmo, isSoul, isProf) 
@@ -804,19 +804,19 @@ function module:OnShow()
     if self.frame.bagFrame and self.frame.bagFrame.wasShown then
         self.frame.bagFrame:Show()
         self.frame.bagFrame.wasShown  = false
-    end
+	end
     
     self:BuildFrame()
     self:OrganizeFrame()
     for k, i in self.fBags do
         self:UpdateBag(i)     
-    end
+	end
     
     if self.frame.bags[-1] and (not self.frame.bags[-1].colorLocked) then
         for k, v in ipairs(self.frame.bags[-1]) do 
             self:SetBorderColor(v)
-        end
-    end
+		end
+	end
     
     self:DoSlotCounts()
 end
@@ -836,7 +836,7 @@ function module:OnHide()
     if self.frame.bagFrame and self.frame.bagFrame:IsVisible() then
         self.frame.bagFrame:Hide()
         self.frame.bagFrame.wasShown = true
-    end
+	end
 end
 
 function module:OnCustomHide() end -- Meant to be overridden
@@ -845,14 +845,14 @@ function module:OnCustomHide() end -- Meant to be overridden
 function module:RegisterDewdrop(baseArgs)
     self.dewdrop = AceLibrary("Dewdrop-2.0")
 	self.dewdrop:Register(self.frame,
-			'children', baseArgs,
-			'point', function(parent)
-				if parent:GetTop() < GetScreenHeight() / 2 then
-					return "BOTTOMRIGHT", "TOPRIGHT"
-				else
-					return "TOPRIGHT", "BOTTOMRIGHT"
-				end
-			end,
-			'dontHook', true
-		)
+		'children', baseArgs,
+		'point', function(parent)
+			if parent:GetTop() < GetScreenHeight() / 2 then
+				return "BOTTOMRIGHT", "TOPRIGHT"
+			else
+				return "TOPRIGHT", "BOTTOMRIGHT"
+			end
+		end,
+		'dontHook', true
+	)
 end
